@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calculadora</title>
+</head>
+<body>
+    <h1 id="titulo">Calculadora IMC</h1>
+    <div class="container-peso">
+        <input type="tel" id="input-peso" placeholder="Peso" required maxlength="5">
+        <p class="texto">kg</p>
+    </div>
+    <div class="container-altura">
+        <input type="tel" id="input-altura" placeholder="Altura" required maxlength="5">
+        <p class="texto">cm</p>
+    </div>
+    <div class="container-resultado">
+        <p id="resultado">-</p>
+        <p id="resultado-texto"></p>
+    </div>
+</body>
+<script>
+
+    let peso = document.querySelector('#input-peso');
+    let altura = document.querySelector('#input-altura');
+    let resultado = document.querySelector('#resultado');
+    let resultadoTexto = document.querySelector('#resultado-texto');
+
+    function imc() {
+        let calculoImc = peso.value / (Math.pow((altura.value / 100), 2));
+        if(isNaN(calculoImc) || calculoImc == Infinity || calculoImc > 500 || calculoImc < 5) {
+            resultado.textContent = '-'
+            resultadoTexto.textContent = null
+            resultado.style.color = 'black';
+            resultado.style.textShadow = 'none';
+            return 0
+        }
+        else {
+            resultado.style.textShadow = "1px 0 #000, -1px 0 #000, 0px 1px #000, 0px -1px #000";
+
+            if(calculoImc <= 18.49) {
+                resultadoTexto.textContent = 'Abaixo do Peso.'
+                resultado.style.color = '#00CCFF';
+            }
+            if(calculoImc >= 18.50 && calculoImc <= 24.99) {
+                resultadoTexto.textContent = 'Peso Ideal.'
+                resultado.style.color = '#00CC11';
+            }
+            if(calculoImc >= 25 && calculoImc <= 29.99) {
+                resultadoTexto.textContent = 'Levemente Acima do Peso.'
+                resultado.style.color = 'yellow';
+            }
+            if(calculoImc >= 30 && calculoImc <= 34.99) {
+                resultadoTexto.textContent = 'Obesidade Grau I.'
+                resultado.style.color = 'orange';
+            }
+            if(calculoImc >= 35 && calculoImc <= 39.99) {
+                resultadoTexto.textContent = 'Obesidade Grau II.'
+                resultado.style.color = 'red';
+            }
+            if(calculoImc >= 40) {
+                resultadoTexto.textContent = 'Obesidade Grau III.'
+                resultado.style.color = 'darkred';
+            }
+            return resultado.textContent = calculoImc.toFixed(2)
+        }
+    }
+
+    setInterval(imc, 500);
+
+</script>
+</html>
