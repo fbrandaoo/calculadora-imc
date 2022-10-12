@@ -1,15 +1,17 @@
 {
   "name": "calculadora",
   "version": "1.0.0",
-  "description": "",
+  "description": "calculadora de imc",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager ../Calculadora-IMC/ Calculadora-IMC --platform win32 --arch ia32 --app-version 1.0 --out ../ --overwrite --icon icon.ico"
   },
   "keywords": [],
   "author": "Fernando",
   "license": "ISC",
   "dependencies": {
-    "electron": "^21.1.0"
+    "electron": "^21.1.0",
+    "electron-packager": "^16.0.0"
   }
 }
